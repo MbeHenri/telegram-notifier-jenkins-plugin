@@ -1,0 +1,69 @@
+<div>
+    <h2>Telegram Notifier Plugin</h2>
+
+    <p>
+        This plugin sends notifications to Telegram after build execution.
+        Configure your bot token and chat ID to receive build status updates.
+    </p>
+
+    <h3>Setup Instructions:</h3>
+
+    <ol>
+        <li>
+            <strong>Create a Telegram Bot:</strong>
+            <ul>
+                <li>Open Telegram and search for <code>@BotFather</code></li>
+                <li>Send the command <code>/newbot</code></li>
+                <li>Follow the instructions to create your bot</li>
+                <li>Copy the bot token provided by BotFather</li>
+            </ul>
+        </li>
+
+        <li>
+            <strong>Get Your Chat ID:</strong>
+            <ul>
+                <li>Start a conversation with your bot</li>
+                <li>Send any message to the bot</li>
+                <li>Visit: <code>https://api.telegram.org/bot&lt;YOUR_BOT_TOKEN&gt;/getUpdates</code></li>
+                <li>Find the <code>"chat":{"id":...</code> value in the response</li>
+            </ul>
+        </li>
+
+        <li>
+            <strong>Create Jenkins Credentials:</strong>
+            <ul>
+                <li>Go to Jenkins → Manage Jenkins → Manage Credentials</li>
+                <li>Add a new "Secret text" credential for the bot token</li>
+                <li>Add another "Secret text" credential for the chat ID</li>
+            </ul>
+        </li>
+
+        <li>
+            <strong>Configure the Plugin:</strong>
+            <ul>
+                <li>In your job configuration, add "Telegram Notifier" as a post-build action</li>
+                <li>Select the bot token and chat ID credentials</li>
+                <li>Choose which build results should trigger notifications</li>
+                <li>Optionally add a custom message template</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>Custom Message:</h3>
+    <p>
+        You can customize the notification message using variables:
+    </p>
+    <ul>
+        <li><code>${BUILD_STATUS}</code> - Build result (SUCCESS, FAILURE, etc.)</li>
+        <li><code>${JOB_NAME}</code> - Job name</li>
+        <li><code>${BUILD_NUMBER}</code> - Build number</li>
+        <li><code>${BUILD_DURATION}</code> - Build duration</li>
+        <li><code>${BUILD_URL}</code> - Build URL</li>
+        <li><code>${CAUSE}</code> - Build trigger cause</li>
+    </ul>
+
+    <p>
+        <strong>Example:</strong><br/>
+        <code>Build ${BUILD_NUMBER} of ${JOB_NAME} finished with status ${BUILD_STATUS}</code>
+    </p>
+</div>

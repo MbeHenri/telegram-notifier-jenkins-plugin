@@ -1,0 +1,5 @@
+<?jelly escape-by-default='true'?>
+<div>
+    Sends Telegram notifications after freestyle job execution. Configure the plugin in "Post-build Actions"
+    with your bot token and chat ID credentials, select notification triggers, and customize messages.
+</div>

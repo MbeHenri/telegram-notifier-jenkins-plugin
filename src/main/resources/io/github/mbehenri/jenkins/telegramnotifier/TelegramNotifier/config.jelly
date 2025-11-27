@@ -1,0 +1,55 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form" xmlns:c="/lib/credentials">
+
+    <f:entry title="Bot Token" field="telegramTokenCredentialId">
+        <c:select />
+    </f:entry>
+
+    <f:entry title="Chat ID" field="telegramChatIdCredentialId">
+        <c:select />
+    </f:entry>
+
+    <f:advanced>
+        <f:section title="Notification Triggers">
+            <f:entry title="Notify on Success" field="notifyOnSuccess">
+                <f:checkbox />
+            </f:entry>
+
+            <f:entry title="Notify on Failure" field="notifyOnFailure">
+                <f:checkbox default="true" />
+            </f:entry>
+
+            <f:entry title="Notify on Unstable" field="notifyOnUnstable">
+                <f:checkbox default="true" />
+            </f:entry>
+
+            <f:entry title="Notify on Aborted" field="notifyOnAborted">
+                <f:checkbox />
+            </f:entry>
+
+            <f:entry title="Notify on Not Built" field="notifyOnNotBuilt">
+                <f:checkbox />
+            </f:entry>
+        </f:section>
+
+        <f:section title="Custom Message">
+            <f:entry title="Message Template" field="customMessage">
+                <f:textarea />
+            </f:entry>
+            <f:entry title="">
+                <div style="margin-top: 5px; padding: 10px; background-color: #f5f5f5; border-radius: 4px;">
+                    <strong>Available Variables:</strong>
+                    <ul style="margin: 5px 0; padding-left: 20px;">
+                        <li><code>${'${BUILD_STATUS}'}</code> - Build result (SUCCESS, FAILURE, etc.)</li>
+                        <li><code>${'${JOB_NAME}'}</code> - Job name</li>
+                        <li><code>${'${BUILD_NUMBER}'}</code> - Build number</li>
+                        <li><code>${'${BUILD_DURATION}'}</code> - Build duration</li>
+                        <li><code>${'${BUILD_URL}'}</code> - Build URL</li>
+                        <li><code>${'${CAUSE}'}</code> - Build trigger cause</li>
+                    </ul>
+                </div>
+            </f:entry>
+        </f:section>
+    </f:advanced>
+
+</j:jelly>
